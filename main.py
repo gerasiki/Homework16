@@ -126,8 +126,9 @@ def users_index():
                 phone=data['phone'],
             )
 
-        with db.session.begin():
-            db.session.add(new_user)
+        db.session.add(new_user)
+        db.session.commit()
+        db.session.close()
 
     return '', 200
 
@@ -157,8 +158,9 @@ def users_by_uid(uid):
         user.role = data['role']
         user.phone = data['phone']
 
-        with db.session.begin():
-            db.session.add(user)
+        db.session.add(user)
+        db.session.commit()
+        db.session.close()
 
         return '', 203
 
@@ -200,8 +202,9 @@ def orders_index():
                 executor_id=data['executor_id'],
             )
 
-        with db.session.begin():
-            db.session.add(new_order)
+        db.session.add(new_order)
+        db.session.commit()
+        db.session.close()
 
     return '', 200
 
@@ -235,8 +238,9 @@ def orders_by_oid(oid):
         order.customer_id = data['customer_id']
         order.executor_id = data['executor_id']
 
-        with db.session.begin():
-            db.session.add(order)
+        db.session.add(order)
+        db.session.commit()
+        db.session.close()
 
         return '', 203
 
@@ -268,8 +272,9 @@ def offers_index():
                 executor_id=data['executor_id'],
                 )
 
-        with db.session.begin():
-            db.session.add(new_offer)
+        db.session.add(new_offer)
+        db.session.commit()
+        db.session.close()
 
     return '', 200
 
@@ -292,8 +297,9 @@ def offers_by_ofid(ofid):
         offer.order_id = data['order_id']
         offer.executor_id = data['executor_id']
 
-        with db.session.begin():
-            db.session.add(offer)
+        db.session.add(offer)
+        db.session.commit()
+        db.session.close()
 
         return '', 203
 
